@@ -9,13 +9,14 @@ from .constants import SPECIAL_CHAR
 
 
 class BigramModel(Loader, AbstractModel):
-    def __init__(self, dataset_filepath: str, normalization: int = 1):
-        if not os.path.exists(dataset_filepath):
-            raise ValueError(f"Invalid file path {dataset_filepath} does not exist.")
-        self.path = dataset_filepath
+    def __init__(self, normalization: int = 1):
         self.normalization = normalization
-        file_content = self.load_data(self.path)
-        self.__setup_counts(file_content)
+
+    def load_data(self, data_path: str):
+        self.data = self.load_from_file(data_path)
+
+    def train(self, **kwargs):
+        self.__setup_counts(self.data)
 
     def __setup_counts(self, file_content: List[str]):
         unique_chars = set("".join(file_content))

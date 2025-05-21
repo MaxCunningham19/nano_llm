@@ -4,7 +4,7 @@ from typing import List
 
 class Loader:
     @staticmethod
-    def load_data(path: str) -> List[str]:
+    def load_from_file(path: str) -> List[str]:
         if not os.path.exists(path):
             raise ValueError(f"File path does not exists: {path}")
         file_content = []

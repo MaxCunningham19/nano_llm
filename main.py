@@ -1,10 +1,13 @@
 import torch
+import matplotlib.pyplot as plt
 from models import BigramModel, SimpleNetwork, SPECIAL_CHAR
 
 
 model = SimpleNetwork(fill=3)
 model.load_data("./names.txt")
-model.train()
+losses = model.train(itterations=100_000, batch_size=32)
+plt.plot(losses)
+plt.show()
 model.visualize(".")
 for i in range(10):
     word = ""

@@ -1,9 +1,9 @@
 import torch
 import matplotlib.pyplot as plt
-from models import BigramModel, SimpleNetwork, SPECIAL_CHAR
+from models import BigramModel, SimpleNetwork, SPECIAL_CHAR, BatchedNetwork
 
 
-model = SimpleNetwork(fill=3)
+model = BatchedNetwork(fill=3)
 model.load_data("./names.txt")
 losses = model.train(itterations=100_000, batch_size=32)
 plt.plot(losses)
